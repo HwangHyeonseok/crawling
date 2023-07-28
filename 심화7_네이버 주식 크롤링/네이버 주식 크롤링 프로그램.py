@@ -76,7 +76,7 @@ for page in range(1, lastpage+1, 1):
         reserve_ratio = stock.select_one('tr[onmouseover="mouseOver(this)"] > :nth-child(10)').text
         if subject != 'N/A' and per != 'N/A' and roe != 'N/A' and pbr != 'N/A' and reserve_ratio != 'N/A':
             print(f"{marketcap_rank} : 종목명 : {subject} PER : {per} ROE : {roe} PBR : {pbr} 유보율 : {reserve_ratio}")
-            ws.append([marketcap_rank, subject, per, roe, pbr, reserve_ratio]) # 엑셀에 데이터 추가
+            ws.append([marketcap_rank,subject, per, roe, pbr, reserve_ratio]) # 엑셀에 데이터 추가
             viewed_stocks +=1
 
         marketcap_rank +=1
