@@ -20,21 +20,21 @@ chrome_options.add_experimental_option("excludeSwitches", ["enable-logging"])
 
 service = Service() # chrome-for-testing 버전에 맞춰 적용되는 코드
 #service = Service(executable_path=ChromeDriverManager(version="114.0.5735.90").install())
-browser = webdriver.Chrome(service=service, options=chrome_options)
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # 웹페이지 해당 주소 이동
-browser.get("https://naver.com/")
-browser.implicitly_wait(5) # webpage가 로드 될 때까지 최대 5초까지 기다려준다. 
+driver.get("https://naver.com/")
+driver.implicitly_wait(5) # webpage가 로드 될 때까지 최대 5초까지 기다려준다. 
 
 # 쇼핑 메뉴 클릭 - 클래스가 "service_icon type_shopping"인 것을 가져온다. 
 #띄어쓰기 연결도 .으로 한다.
-browser.find_element(By.CSS_SELECTOR, ".service_icon.type_shopping").click()
+driver.find_element(By.CSS_SELECTOR, ".service_icon.type_shopping").click()
 # 새로운 탭으로 이동 - 참고 refernce : https://m.blog.naver.com/kiddwannabe/221449593300
-browser.switch_to.window(browser.window_handles[1])
+driver.switch_to.window(driver.window_handles[1])
 time.sleep(3) # 프로그램 자체를 3초 대기
 
 # 검색창 입력 - input 태그를 가지고 + 클래스 이름이 "input._searchInput_search_text_3CUDs"인 것을 가져온다.
-search = browser.find_element(By.CSS_SELECTOR, "input._searchInput_search_text_3CUDs")
+search = driver.find_element(By.CSS_SELECTOR, "input._searchInput_search_text_3CUDs")
 search.click()
 
 # 검색어 입력
@@ -43,7 +43,7 @@ search.send_keys(Keys.ENTER)
 time.sleep(10) # 10초 대기 
 
 # 현재 사용중인 탭 종료
-browser.close()
+driver.close()
 
 # 메인 탭으로 이동
-browser.switch_to.window(browser.window_handles[0])
+driver.switch_to.window(driver.window_handles[0])
